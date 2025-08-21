@@ -10,7 +10,7 @@ namespace Demo
         {
             #region Element Operators - Immediate Excution
             // Valid Only with fluent syntax
-            
+
             #region First(), Last(), FirstOrDefault(), LastOrDefault()
             #region First, Last, FirstOrDefault, LastOrDefault [Part 01]
             /// ProductsList = new List<Product>();
@@ -93,8 +93,25 @@ namespace Demo
             /// Result = ProductsList.SingleOrDefault(p => p.UnitsInStock == 0); 
             #endregion
             #endregion
-            //Result.Print();
-            Result.PrintAll();
+
+            #region Aggregate Operators - Count, GetNonEnumeratedCount - Immediate Excution
+            
+            #region Count(), TryGetNonEnumeratedCount() [.NET 6.0 New Feature] [in Progress (V3)]
+            // Using if i have IEnumerable
+            /// //var Result = ProductsList.Count();
+            /// //Result = ProductsList.Count;
+            /// IEnumerable<int> Numbers = Enumerable.Range(0, 100);
+            /// Numbers.Count();
+
+            //var Result = ProductsList.Count(p=> p.UnitsInStock ==0);
+            //ProductsList.TryGetNonEnumeratedCount(out var Result); // Here Access Count Property direct with out make enumaration
+            #endregion
+            
+            
+            #endregion
+
+            Result.Print();
+            //Result.PrintAll();
         }
     }
 }
