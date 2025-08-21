@@ -112,6 +112,38 @@ namespace Demo
             /// Result = ProductsList.Average(p => p.UnitPrice); 
             #endregion
 
+            #region Max(), Min() [First 2 Overloads] && MaxBy(), MinBy() [.NET 6.0 NEW Featur]
+            /// var Result = ProductsList.Max();// to use first overload should implement IComparable
+            /// Result = ProductsList.Min();
+            /// 
+            /// Result = ProductsList.Max(new ProductComparer());
+            /// Result = ProductsList.OrderByDescending(p => p.UnitPrice).FirstOrDefault();
+            /// 
+            /// Result = ProductsList.Min(new ProductComparer());
+            /// Result = ProductsList.OrderBy(p => p.UnitPrice).FirstOrDefault();
+            /// 
+            /// Result = ProductsList.MaxBy(p => p.UnitPrice);
+            /// Result = ProductsList.MinBy(p => p.UnitPrice);
+            /// //Result = ProductsList.MinBy(p => p.UnitPrice,new IntComparer()); 
+            #endregion
+
+            #region Max(), Min(), [Other Overloads]
+            /// var Result = ProductsList.Max(p => p.UnitPrice); // 263.5000
+            ///                                                  //var Result = ProductsList.MaxBy(p => p.UnitPrice); // ProductID:38,ProductName:Côte de Blaye,CategoryBeverages,UnitPrice:263.5000,UnitsInStock:17
+            /// 
+            /// Result = ProductsList.Min(p => p.UnitPrice); // 2.5000
+            /// //var Result = ProductsList.MaxBy(p => p.UnitPrice); 
+
+
+            //var Result = ProductsList.Max(p => p.ProductName);
+            //Result = ProductsList.Min(p => p.ProductName);
+
+            //var Result = ProductsList.MaxBy(p => p.ProductName);
+            //Result = ProductsList.MinBy(p => p.ProductName); 
+            #endregion
+
+
+
 
             #endregion
 

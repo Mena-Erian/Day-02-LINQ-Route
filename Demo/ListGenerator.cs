@@ -8,6 +8,11 @@ using System.Xml.Linq;
 
 namespace Demo
 {
+    class ProductComparer : IComparer<Product>
+    {
+        public int Compare(Product? x, Product? y)
+        => x?.UnitsInStock.CompareTo(y?.UnitsInStock) ?? (y is null ? 0 : -1);
+    }
     class Product02 : Product
     {
         public int SerialNumber { get; set; }
