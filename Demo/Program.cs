@@ -1,10 +1,100 @@
-﻿namespace Demo
+﻿using System.Linq;
+using static Demo.ListGenerator;
+
+
+namespace Demo
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Hello, World!");
+            #region Element Operators - Immediate Excution
+            // Valid Only with fluent syntax
+            
+            #region First(), Last(), FirstOrDefault(), LastOrDefault()
+            #region First, Last, FirstOrDefault, LastOrDefault [Part 01]
+            /// ProductsList = new List<Product>();
+            /// 
+            /// //var Result = ProductsList.First();
+            /// //Result= ProductsList.Last();
+            /// 
+            /// var Result = ProductsList.FirstOrDefault();
+            /// Result = ProductsList.FirstOrDefault(new Product() { ProductID = -1 });
+            /// 
+            /// Result = ProductsList.LastOrDefault();
+            /// Result = ProductsList.LastOrDefault(new Product() { ProductID = -1 }); 
+            #endregion
+
+            #region First, Last, FirstOrDefault, LastOrDefault [Part 02]
+            /// //var Result = ProductsList.First(P => P.UnitsInStock == 0);
+            /// //Result = ProductsList.Last(P => P.UnitsInStock == 0);
+            /// 
+            /// var Result = ProductsList.FirstOrDefault(P => P.UnitsInStock > 1_000);
+            /// Result = ProductsList.FirstOrDefault(P => P.UnitsInStock > 1_000, new Product() { ProductID = -1 });
+            /// 
+            /// Result = ProductsList.LastOrDefault(P => P.UnitsInStock > 1_000);
+            /// Result = ProductsList.LastOrDefault(P => P.UnitsInStock > 1_000, new Product() { ProductID = -1 });
+
+            #endregion
+            #endregion
+
+            #region ElementAt(), ElementAtOrDefault()
+            /// var Result = ProductsList.ElementAt(1);
+            /// Result = ProductsList.ElementAt(new Index(1));
+            /// Result = ProductsList.ElementAt(new Index(1, true));
+            /// Result = ProductsList.ElementAt(^1); // Last 1
+            /// 
+            /// Result = ProductsList.ElementAtOrDefault(1);
+            /// Result = ProductsList.ElementAtOrDefault(new Index(1));
+            /// Result = ProductsList.ElementAtOrDefault(new Index(1, true));
+            /// Result = ProductsList.ElementAtOrDefault(^1); // Last 1 
+            #endregion
+
+            #region Single(), SingleOrDefault()
+            //var DiscountedProducts = new List<Product>() { ProductsList[4] };
+
+            #region Single, SingleOrDefault [Part 01]
+            /// var Result = DiscountedProducts.Single();
+            /// // If Sequence Contain just only one element, will return this single element
+            /// // Else will throw exception (Sequence is Empty or Contains More than one element)
+
+            /// var Result = DiscountedProducts.SingleOrDefault();
+            /// // If Sequence is Empty, Will Return the Default value of TSource.
+            /// // If Sequence Contains JUst only one Element, Will Return this Single Element.
+            /// // If Sequence Contains More than only one Element,Throw Exception.
+
+            /// Result = DiscountedProducts.SingleOrDefault(ProductsList[10]);
+            /// // If Sequence is Empty, Will Return the Default value of TSource.
+            /// // If Sequence Contains JUst only one Element, Will Return this Single Element.
+            /// // If Sequence Contains More than only one Element,Not Throw Exception. 
+            #endregion
+
+            #region Single, SingleOrDefault [Part 02]
+            /// //var Result = ProductsList.Single(p => p.UnitsInStock == 0);
+            /// var Result = DiscountedProducts.Single(p => p.UnitsInStock == 0);
+            /// // If Sequence Contain just only one element Matching the Condition, will return this Matched single element
+            /// // Else will throw exception (Sequence is Empty or Contains More than one element Or not Matching the condition)
+
+            /// var Result = DiscountedProducts.SingleOrDefault(p => p.UnitsInStock == 0);
+            /// Result = DiscountedProducts.SingleOrDefault(p => p.UnitsInStock == 0, ProductsList[10]);
+            #endregion
+
+            #endregion
+
+            #region DefaultIfEmpty()
+            /// ProductsList = new List<Product>();
+            /// 
+            /// var Result = ProductsList.DefaultIfEmpty();
+            /// Result = ProductsList.DefaultIfEmpty(ProductsList[2]);
+            #endregion
+
+            #region SingleOrDefault vs FirstOrDefault
+            /// var Result = ProductsList.FirstOrDefault(p => p.UnitsInStock == 0);
+            /// Result = ProductsList.SingleOrDefault(p => p.UnitsInStock == 0); 
+            #endregion
+            #endregion
+            //Result.Print();
+            Result.PrintAll();
         }
     }
 }
