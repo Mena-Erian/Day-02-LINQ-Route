@@ -95,7 +95,7 @@ namespace Demo
             #endregion
 
             #region Aggregate Operators - Count, GetNonEnumeratedCount - Immediate Excution
-            
+
             #region Count(), TryGetNonEnumeratedCount() [.NET 6.0 New Feature] [in Progress (V3)]
             // Using if i have IEnumerable
             /// //var Result = ProductsList.Count();
@@ -106,8 +106,13 @@ namespace Demo
             //var Result = ProductsList.Count(p=> p.UnitsInStock ==0);
             //ProductsList.TryGetNonEnumeratedCount(out var Result); // Here Access Count Property direct with out make enumaration
             #endregion
-            
-            
+
+            #region Sum(), Average()
+            /// var Result = ProductsList.Sum(p => p.UnitPrice);
+            /// Result = ProductsList.Average(p => p.UnitPrice); 
+            #endregion
+
+
             #endregion
 
             Result.Print();
