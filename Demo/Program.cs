@@ -1,10 +1,23 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
+using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using static Demo.ListGenerator;
 
 
 namespace Demo
 {
+    class StringEqualityComparer : IEqualityComparer<string>
+    {
+        public bool Equals(string? x, string? y)
+            => string.Equals(x, y, StringComparison.CurrentCultureIgnoreCase);
+        //  => x?.ToLower().Equals(y.ToLower())  ?? (y is null?  true : false ) ;
+
+
+        public int GetHashCode([DisallowNull] string obj)
+         => obj.ToLower().GetHashCode();
+    }
     internal class Program
     {
         static void Main()
@@ -203,9 +216,73 @@ namespace Demo
             /// var Result = Enumerable.Empty<Product>();
             #endregion
 
+            #region Set Operators - Union Family
+           
+            #region Example 01
+            /// var Seq01 = Enumerable.Range(0, 100);   // 0..99
+            /// var Seq02 = Enumerable.Range(50, 100);   // 50..149
+            /// 
+            /// var Result = Seq01.Union(Seq02); // Merging with Removing Duplicates 0..149
+            /// 
+            /// Result = Seq01.Concat(Seq02); // Merging without Removing Duplicates = 0..99. 50..149
+            /// 
+            /// //Result = Result.Distinct(); // Merging with Removing Duplicates // Distinct Value = 0..149
+            /// 
+            /// Result = Seq01.Intersect(Seq02); // Shared in the Same Value Between 2 Sequenses // 50..99
+            /// 
+            /// Result = Seq01.Except(Seq02); // Values in Seq01 not in Seq02 // 0..9 
+            #endregion
+
+            #region Example 02
+            /// var Seq01 = ProductsList.Where(p => p.ProductId <= 40).ToList(); // 1..40
+            /// var Seq02 = ProductsList.Where(p => p.ProductId >= 40 && p.ProductId < 78).ToList(); // 40..77
+            /// 
+            /// //var Seq01 = ProductsList.Where(p => p.ProductId <= 50).ToList(); // 1..50
+            /// //var Seq02 = ProductsList.Where(p => p.ProductId >= 40 && p.ProductId < 78).ToList(); // 40..77
+
+            #region Union, UnionBy
+            /// var Result = Seq01.Union(Seq02);
+            /// Result = Seq01.Union(Seq02, new ProductEquiltyComparer());
+            /// Result = Seq01.UnionBy(Seq02, p => p.Category);
+            /// Result = Seq01.UnionBy(Seq02, p => new { p.ProductName, p.Category }); // trying to match on both name and category together.
+            ///                                                                        // NOTE: if you Trying to distinct the matching in name alone and
+            ///                                                                        // category alone not together in the same list you Can do this =>
+            ///                                                                        // - Builds two HashSets from Seq01 — one for names, one for categories.
+            ///                                                                        // - Filters Seq02 to exclude any product whose name or category already exists.
+            ///                                                                        // - Concatenates the filtered Seq02 with Seq01 to form the union.
+            /// Result = Seq01.UnionBy(Seq02, p => p.Category, new StringEqualityComparer()); // another string comparer (ignore case)
+            #endregion
+
+            #region Concat
+            //var Result = Seq01.Concat(Seq02);
+            #endregion
+
+            #region Intersect, IntersectBy
+            /// var Result = Seq01.Intersect(Seq02); // Shared in the Same State Between 2 Sequenses // 40..50
+            /// Result = Seq01.Intersect(Seq02, new ProductEquiltyComparer()); // Shared in the Same State Between 2 Sequenses based on ProductEquiltyComparer() and get the matching from fist sequense  
+            /// 
+            /// Result = Seq01.IntersectBy(Seq02.Select(p => p.ProductId), p => p.ProductId);
+            /// Result = Seq01.IntersectBy(Seq02.Select(p => p.UnitPrice), p => p.ProductId);
+            /// Result = Seq01.IntersectBy(Seq02.Select(p => p.Category), p => p.Category, new StringEqualityComparer());
+            /// Result = Seq01.IntersectBy(Seq02.Select(p => new { p.ProductId, p.ProductName }), p => new { p.ProductId, p.ProductName }); 
+            #endregion
+
+            #region Except, ExceptBy
+            /// var Result = Seq01.Except(Seq02); // Product in seq01 not in seq02 // 1 to 39
+            /// Result = Seq01.Except(Seq02, new ProductEquiltyComparerByCategory()); // Do the Same Based on Category and Regardless another porperties
+            /// Result = Seq01.ExceptBy(Seq02.Select(p => p.Category), p => p.Category); // Do the Same Based on Category and Regardless another porperties
+            /// Result = Seq01.ExceptBy(Seq02.Select(p => new { p.ProductName, p.Category }), p => new { p.ProductName, p.Category });
+            /// Result = Seq01.ExceptBy(Seq02.Select(p => p.Category), p => p.Category, new StringEqualityComparer()); // Do the Same Based on Category and Regardless another porperties
+            #endregion
+
+            //Result.Count().Print(); 
+            #endregion
+
+            #endregion
+
 
             //Result.Print();
-            Result.PrintAll();
+            //Result.PrintAll();
         }
     }
 }
