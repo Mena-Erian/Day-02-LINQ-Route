@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Immutable;
+using System.Linq;
 using static Demo.ListGenerator;
 
 
@@ -142,23 +143,60 @@ namespace Demo
             //Result = ProductsList.MinBy(p => p.ProductName); 
             #endregion
 
-            string[] Names = ["Mena", "Erian", "Farouk", "Makar"];
-
-            /// That's like foreach
-            /// first itration => str1 = "Mena", str2 = "Erian";
-            /// Next itration  => str1 = str2 { return from last itration => "Mena Erian" }, str2 = Next itration { "Farouk" }
+            #region Aggregate() [3 Overloads]
+            /// string[] Names = ["Mena", "Erian", "Farouk", "Makar"];
             /// 
-            var Result = Names.Aggregate((str1, str2) => $"{str1} {str2}");
-
-            Result = Names.Aggregate("Hello", (SeedValue, str2) => $"{SeedValue} {str2}");
-
-            Result = Names.Aggregate("Hello", (SeedValue, str2) => $"{SeedValue} {str2}", (TAccumlate) => TAccumlate.Replace(" ", ", "));
-
+            /// /// That's like foreach
+            /// /// first itration => str1 = "Mena", str2 = "Erian";
+            /// /// Next itration  => str1 = str2 { return from last itration => "Mena Erian" }, str2 = Next itration { "Farouk" }
+            /// /// 
+            /// var Result = Names.Aggregate((str1, str2) => $"{str1} {str2}");
+            /// 
+            /// Result = Names.Aggregate("Hello", (SeedValue, str2) => $"{SeedValue} {str2}");
+            /// 
+            /// Result = Names.Aggregate("Hello", (SeedValue, str2) => $"{SeedValue} {str2}", (TAccumlate) => TAccumlate.Replace(" ", ", "));
+            #endregion
 
             #endregion
 
-            Result.Print();
-            //Result.PrintAll();
-         }
+            #region Conversion (Casting) Operators - Immediate Excution
+            /// List<Product> productsList = ProductsList.Where(p => p.UnitsInStock == 0).ToList();
+            /// 
+            /// Product[] array = ProductsList.Where(p => p.UnitsInStock == 0).ToArray();
+            /// 
+            /// Dictionary<long, Product> dic01 = ProductsList.Where(p => p.UnitsInStock == 0)
+            ///                                 .ToDictionary((p) => p.ProductID);
+            /// 
+            /// //Dictionary<string, Product> dic01 = ProductsList.Where(p => p.UnitsInStock == 0)
+            /// //                                .ToDictionary((p) => p.ProductName);
+            /// 
+            /// Dictionary<long, Product> dic02 = ProductsList.Where(p => p.UnitsInStock == 0)
+            ///                                 .ToDictionary((p) => p.ProductID, new CustomEqulityComparer());
+            /// 
+            /// Dictionary<long, string> dic03 = ProductsList.Where(p => p.UnitsInStock == 0)
+            ///                                 .ToDictionary((p) => p.ProductID, p => p.ProductName);
+            /// 
+            /// Dictionary<long, string> dic04 = ProductsList.Where(p => p.UnitsInStock == 0)
+            ///                                .ToDictionary((p) => p.ProductID, p => p.ProductName, new CustomEqulityComparer());
+            /// 
+            /// HashSet<Product> hashSet01 = ProductsList.Where(p => p.UnitsInStock == 0)
+            ///                             .ToHashSet();
+            /// 
+            /// HashSet<Product> hashSet02 = ProductsList.Where(p => p.UnitsInStock == 0)
+            ///                             .ToHashSet(new CustomEqulityComparer02());
+            /// 
+            /// ILookup<long, Product> lookup = ProductsList.Where(p => p.UnitsInStock == 0).ToLookup(p=>p.ProductID);
+            /// ILookup<char, Product> lookup01 = ProductsList.OrderBy(p => p.ProductName).ToLookup(group => group.ProductName[0]);
+            /// 
+            /// var Result = ProductsList.Where(p => p.UnitsInStock == 0).ToImmutableSortedSet();
+            #endregion
+
+
+
+
+
+            //Result.Print();
+            Result.PrintAll();
+        }
     }
 }

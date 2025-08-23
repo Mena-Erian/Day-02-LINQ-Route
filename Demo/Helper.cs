@@ -17,7 +17,7 @@ namespace Demo
     }
     public static class Helper
     {
-         
+
         public static TEnum GetFromUserByType<TEnum>(string? MsgToUser, bool isMainMsg = true) where TEnum : Enum
             => (TEnum)Enum.ToObject(typeof(TEnum), GetIntFromUser(MsgToUser, isMainMsg));
 
@@ -277,6 +277,16 @@ namespace Demo
         public static void PrintAll<T>(this IEnumerable<T> values)
         {
             foreach (T item in values) Console.WriteLine(item);
+        }
+        public static void PrintAll<TKay, TElement>(this ILookup<TKay, TElement> values)
+        {
+            foreach (IGrouping<TKay, TElement> item in values)
+            {
+                
+                Console.Write("Key: "); item.Key.Print();
+                Console.WriteLine("Elements: "); item.PrintAll();
+                Console.WriteLine("------------------------------------\n");
+            }
         }
 
 
