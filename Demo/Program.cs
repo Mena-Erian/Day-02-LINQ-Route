@@ -142,13 +142,23 @@ namespace Demo
             //Result = ProductsList.MinBy(p => p.ProductName); 
             #endregion
 
+            string[] Names = ["Mena", "Erian", "Farouk", "Makar"];
 
+            /// That's like foreach
+            /// first itration => str1 = "Mena", str2 = "Erian";
+            /// Next itration  => str1 = str2 { return from last itration => "Mena Erian" }, str2 = Next itration { "Farouk" }
+            /// 
+            var Result = Names.Aggregate((str1, str2) => $"{str1} {str2}");
+
+            Result = Names.Aggregate("Hello", (SeedValue, str2) => $"{SeedValue} {str2}");
+
+            Result = Names.Aggregate("Hello", (SeedValue, str2) => $"{SeedValue} {str2}", (TAccumlate) => TAccumlate.Replace(" ", ", "));
 
 
             #endregion
 
             Result.Print();
             //Result.PrintAll();
-        }
+         }
     }
 }
