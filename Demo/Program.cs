@@ -191,8 +191,17 @@ namespace Demo
             /// var Result = ProductsList.Where(p => p.UnitsInStock == 0).ToImmutableSortedSet();
             #endregion
 
-
-
+            #region Generation Operators
+            /// // The only way for calling these operators => is as Static Method Through "Enumerable" Class.
+            /// 
+            /// //var Result = Enumerable.Range(0, 100);//0..9
+            /// 
+            /// //Result = Enumerable.Repeat(2, 100); // => 2 with count 100
+            /// 
+            /// //var Result = Enumerable.Repeat<Product>(new Product { Category = "Meat" }, 100);
+            /// 
+            /// var Result = Enumerable.Empty<Product>();
+            #endregion
 
 
             //Result.Print();
