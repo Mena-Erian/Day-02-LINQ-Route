@@ -296,7 +296,67 @@ namespace Demo
             /// var Result = Number.Zip(words, [1,2,3]); // C# 10.0 NEW Feature
             #endregion
 
+            #region Grouping Operators - GroupBy, Chunk
 
+            /// var Result = from p in ProductsList
+            ///              group p by p.Category;
+            /// 
+            /// Result = ProductsList.GroupBy(p => p.Category);
+
+            /// var Result = from p in ProductsList
+            ///              where p.UnitsInStock > 0
+            ///              group p by p.Category
+            ///              into prdGroup
+            ///              where prdGroup.Count() > 10
+            ///              select new
+            ///              {
+            ///                  Category = prdGroup.Key,
+            ///                  Count = prdGroup.Count()
+            ///              };
+            /// 
+            /// Result = ProductsList.Where(p => p.UnitsInStock > 0)
+            ///                      .GroupBy(p => p.Category)
+            ///                      .Where(prdGroup => prdGroup.Count() > 10)
+            ///                      .Select(prdGroup => new
+            ///                      {
+            ///                          Category = prdGroup.Key,
+            ///                          Count = prdGroup.Count()
+            ///                      });
+            /// 
+
+
+            #region GroupBy
+            //var Result = ProductsList.GroupBy(p => p.Category);
+            //Result = ProductsList.GroupBy(p => p.Category,new StringEqualityComparer());
+
+            //var Result = ProductsList.GroupBy(p => p.Category, p => new { p.ProductId, p.ProductName });
+            //Result = ProductsList.GroupBy(p => p.Category, p => new { p.ProductId, p.ProductName }, new StringEqualityComparer());
+
+            //var Result = ProductsList.GroupBy(p => p.Category, (key, products) => new
+            //{
+            //Category = key,
+            //Count = products.Count()
+            //});
+            //Result = ProductsList.GroupBy(p => p.Category, (key, products) => new
+            //{
+            //Category = key,
+            //Count = products.Count()
+            //}, new StringEqualityComparer());
+
+            // var Result = ProductsList.GroupBy(p => p.Category, p => new { p.ProductId, p.ProductName }, (key, products) => new
+            // {
+            //     Category = key,
+            //     products
+            // });
+            // Result = ProductsList.GroupBy(p => p.Category, p => new { p.ProductId, p.ProductName }, (key, products) => new
+            // {
+            //     Category = key,
+            //     products
+            // }, new StringEqualityComparer()); 
+            #endregion
+
+
+            #endregion
 
             //Result.Print();
             Result.PrintAll();

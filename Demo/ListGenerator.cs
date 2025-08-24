@@ -187,7 +187,7 @@ namespace Demo
                         UnitPrice = 17.4500M, UnitsInStock = 29 },
                       new Product() { ProductId = 17, ProductName = "Alice Mutton", Category = "Meat/Poultry",
                         UnitPrice = 39.0000M, UnitsInStock = 0 },
-                      new Product() { ProductId = 18, ProductName = "Carnarvon Tigers", Category = "Seafood",
+                      new Product() { ProductId = 18, ProductName = "Carnarvon Tigers", Category = "seafood",
                         UnitPrice = 62.5000M, UnitsInStock = 42 },
                       new Product() { ProductId = 19, ProductName = "Teatime Chocolate Biscuits", Category = "Confections",
                         UnitPrice = 9.2000M, UnitsInStock = 25 },

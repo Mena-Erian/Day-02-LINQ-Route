@@ -282,13 +282,22 @@ namespace Demo
         {
             foreach (IGrouping<TKay, TElement> item in values)
             {
-                
+
                 Console.Write("Key: "); item.Key.Print();
                 Console.WriteLine("Elements: "); item.PrintAll();
                 Console.WriteLine("------------------------------------\n");
             }
         }
 
+        public static void PrintAll<TKay, TElement>(this IEnumerable<IGrouping<TKay, TElement>> values)
+        {
+            foreach (IGrouping<TKay, TElement> item in values)
+            {
 
+                Console.Write("Key: "); item.Key.Print();
+                Console.WriteLine("Elements: "); item.PrintAll();
+                Console.WriteLine("------------------------------------\n");
+            }
+        }
     }
 }
