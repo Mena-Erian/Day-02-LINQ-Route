@@ -286,9 +286,20 @@ namespace Demo
 
             #endregion
 
+            #region Transformation Operators -Zip
+            /// List<string> words = new List<string>() { "Ten", "Twnty", "Thirty", "Fourty" };
+            /// 
+            /// int[] Number = [10, 20, 30, 40, 50, 60, 70];
+            /// 
+            /// //var Result = Number.Zip(words);
+            /// //var Result = Number.Zip(words, (number, word) => $"{number} = {word}");
+            /// var Result = Number.Zip(words, [1,2,3]); // C# 10.0 NEW Feature
+            #endregion
+
+
 
             //Result.Print();
-            //Result.PrintAll();
+            Result.PrintAll();
         }
     }
 }
