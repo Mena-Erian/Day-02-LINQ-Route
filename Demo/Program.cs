@@ -217,7 +217,7 @@ namespace Demo
             #endregion
 
             #region Set Operators - Union Family
-           
+
             #region Example 01
             /// var Seq01 = Enumerable.Range(0, 100);   // 0..99
             /// var Seq02 = Enumerable.Range(50, 100);   // 50..149
@@ -226,7 +226,7 @@ namespace Demo
             /// 
             /// Result = Seq01.Concat(Seq02); // Merging without Removing Duplicates = 0..99. 50..149
             /// 
-            /// //Result = Result.Distinct(); // Merging with Removing Duplicates // Distinct Value = 0..149
+            /// //Result = Result.Distinct(); // Merging with Removing Duplicates // Distinct Value = 0..149 [Filteration Operator]
             /// 
             /// Result = Seq01.Intersect(Seq02); // Shared in the Same Value Between 2 Sequenses // 50..99
             /// 
@@ -234,11 +234,11 @@ namespace Demo
             #endregion
 
             #region Example 02
-            /// var Seq01 = ProductsList.Where(p => p.ProductId <= 40).ToList(); // 1..40
-            /// var Seq02 = ProductsList.Where(p => p.ProductId >= 40 && p.ProductId < 78).ToList(); // 40..77
-            /// 
-            /// //var Seq01 = ProductsList.Where(p => p.ProductId <= 50).ToList(); // 1..50
-            /// //var Seq02 = ProductsList.Where(p => p.ProductId >= 40 && p.ProductId < 78).ToList(); // 40..77
+            //var Seq01 = ProductsList.Where(p => p.ProductId <= 40).ToList(); // 1..40
+            //var Seq02 = ProductsList.Where(p => p.ProductId >= 40 && p.ProductId < 78).ToList(); // 40..77
+
+            //var Seq01 = ProductsList.Where(p => p.ProductId <= 50).ToList(); // 1..50
+            //var Seq02 = ProductsList.Where(p => p.ProductId >= 40 && p.ProductId < 78).ToList(); // 40..77
 
             #region Union, UnionBy
             /// var Result = Seq01.Union(Seq02);
@@ -273,6 +273,12 @@ namespace Demo
             /// Result = Seq01.ExceptBy(Seq02.Select(p => p.Category), p => p.Category); // Do the Same Based on Category and Regardless another porperties
             /// Result = Seq01.ExceptBy(Seq02.Select(p => new { p.ProductName, p.Category }), p => new { p.ProductName, p.Category });
             /// Result = Seq01.ExceptBy(Seq02.Select(p => p.Category), p => p.Category, new StringEqualityComparer()); // Do the Same Based on Category and Regardless another porperties
+            #endregion
+
+            #region Distinct, DistinctBy [Filteration Operator]
+            /// var Result = Seq01.Distinct(); // Remove the Duplicate
+            /// Result = Seq01.Distinct(new ProductEquiltyComparerByCategory());
+            /// Result = Seq01.DistinctBy(p => p.Category);
             #endregion
 
             //Result.Count().Print(); 
