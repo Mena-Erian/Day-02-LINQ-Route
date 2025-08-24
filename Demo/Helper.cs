@@ -278,6 +278,14 @@ namespace Demo
         {
             foreach (T item in values) Console.WriteLine(item);
         }
+        public static void PrintAll<T>(this IEnumerable<ICollection<T>> values)
+        {
+            foreach (var chunk in values)
+            {
+                foreach (var item in chunk) Console.WriteLine(item);
+                Console.WriteLine("-------------------------");
+            };
+        }
         public static void PrintAll<TKay, TElement>(this ILookup<TKay, TElement> values)
         {
             foreach (IGrouping<TKay, TElement> item in values)

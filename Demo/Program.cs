@@ -324,7 +324,6 @@ namespace Demo
             ///                      });
             /// 
 
-
             #region GroupBy
             //var Result = ProductsList.GroupBy(p => p.Category);
             //Result = ProductsList.GroupBy(p => p.Category,new StringEqualityComparer());
@@ -355,7 +354,15 @@ namespace Demo
             // }, new StringEqualityComparer()); 
             #endregion
 
+            #region Chunck - (.NET 6.0 New Feature)
+            /// var fruits = new string[] { "Mena", "Erian", "Farouk", "Makar", "Gerges", "Done","Test" };
+            /// var Result = fruits.Chunk(3);
+            /// 
+            /// Result.PrintAll<string>(); 
+            #endregion
 
+            
+            
             #endregion
 
             //Result.Print();
