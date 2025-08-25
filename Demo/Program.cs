@@ -450,7 +450,7 @@ namespace Demo
 
 
             //Result.Print();
-            Result.PrintAll();
+            //Result.PrintAll();
         }
     }
 }
