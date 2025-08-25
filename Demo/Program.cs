@@ -419,7 +419,34 @@ namespace Demo
             ///               .Where(NoVowelName => NoVowelName.Length > 2);
             #endregion
 
+            #region Partitioning Operators - Take, TakeLast, Skip, SkipList, TakeWhile, SkipWhile
 
+            #region Take, TakeLast, Skip, SkipList
+            /// var Result = ProductsList.Where(p => p.UnitsInStock > 0).Take(5);
+            /// Result = ProductsList.Where(p => p.UnitsInStock > 0).Take(new Range(0,5));
+            /// Result = ProductsList.Where(p => p.UnitsInStock > 0).TakeLast(5);
+            /// 
+            /// Result = ProductsList.Where(p => p.UnitsInStock > 0).Skip(5); // Skip First 5
+            /// Result = ProductsList.Where(p => p.UnitsInStock > 0).SkipLast(5); // Skip Last 5 
+            #endregion
+
+            #region TakeWhile, SkipWhile
+            /// int[] numbers = { 5, 4, 3, 34, 45, 4, 6, 547, 56, 7, 56, 74, 5, 5, 34, 522, 2 };
+            /// 
+            /// // Take as long as the condition is true
+            /// var Result = numbers.TakeWhile((element, index) => element > index);
+            /// // Take start from this condition
+            /// Result = numbers.SkipWhile((element => element % 3 != 0)); 
+            #endregion
+
+            #region Pagination
+            /// var pageSize = 10;
+            /// var pageIndex = 2;
+            /// 
+            /// var Result = ProductsList.Skip(pageSize * (pageIndex - 1)).Take(pageSize);
+            #endregion
+            
+            #endregion
 
 
             //Result.Print();
