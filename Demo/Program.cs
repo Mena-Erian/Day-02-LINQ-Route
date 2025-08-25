@@ -361,12 +361,46 @@ namespace Demo
             /// Result.PrintAll<string>(); 
             #endregion
 
-            
-            
             #endregion
 
-            //Result.Print();
-            Result.PrintAll();
+            #region Quantitifar Operators - Return Boolean Value
+            /// var Result = ProductsList.Any(); // Return True, if Sequence at least Contains One Element.
+            /// 
+            /// Result = ProductsList.Any(p => p.UnitsInStock > 0); // Return True, if Sequence at least Contains One Matching Element for the predicate.
+            /// //Result = ProductsList.Exists(p => p.UnitsInStock > 0); // This overload from Any() like this 
+            /// 
+            /// Result = ProductsList.All(p => p.UnitsInStock > 0); // Return True, if Sequence at least Contains All Matching Element for the predicate.
+            /// 
+            /// Result = ProductsList.Contains(new Product()
+            /// {
+            ///     ProductId = 32,
+            ///     ProductName = "Mascarpone Fabioli",
+            ///     Category = "Dairy Products",
+            ///     UnitsInStock = 9
+            /// }); // Return True if specifed element matching in list
+            /// 
+            /// Result = ProductsList.Contains(new Product()
+            /// {
+            ///     ProductId = 32,
+            ///     ProductName = "Mascarpone Fabioli",
+            ///     Category = "Dairy Products",
+            ///     UnitsInStock = 9
+            /// }, new ProductEquiltyComparerByCategory());
+            /// 
+            /// // var Seq01 = Enumerable.Range(0, 10);
+            /// // var Seq02 = Enumerable.Range(0, 10);
+            /// //Result = Seq01.SequenceEqual(Seq02);
+            /// 
+            /// var Seq01 = ProductsList.Where(p => p.ProductId <= 50).ToList(); // 1..50
+            /// var Seq02 = ProductsList.Where(p => p.ProductId <= 50).ToList(); // 40..77
+            /// 
+            /// Result = Seq01.SequenceEqual(Seq02);
+            /// Result = Seq01.SequenceEqual(Seq02, new ProductEquiltyComparerById());
+            #endregion
+
+
+            Result.Print();
+            //Result.PrintAll();
         }
     }
 }
