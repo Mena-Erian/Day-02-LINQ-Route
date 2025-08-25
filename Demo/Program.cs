@@ -3,6 +3,7 @@ using System.Collections.Immutable;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.RegularExpressions;
 using static Demo.ListGenerator;
 
 
@@ -297,7 +298,6 @@ namespace Demo
             #endregion
 
             #region Grouping Operators - GroupBy, Chunk
-
             /// var Result = from p in ProductsList
             ///              group p by p.Category;
             /// 
@@ -399,9 +399,31 @@ namespace Demo
             /// Result = Seq01.SequenceEqual(Seq02, new ProductEquiltyComparerById());
             #endregion
 
+            #region Let / Into
+            /// List<string> Names = new List<string>() { "Mena", "Erian", "Farouk", "Makar" };
+            /// 
+            /// var Result = from n in Names
+            ///              select Regex.Replace(n, "[aeiouAEIOU]", string.Empty)
+            ///              // Restart Query with Introducing NEW Range Variable : No Vowel Name
+            ///              into NoVowelName
+            ///              where NoVowelName.Length > 2
+            ///              select NoVowelName;
+            /// 
+            /// Result = from n in Names
+            ///          let NoVowelName = Regex.Replace(n, "[aeiouAEIOU]", string.Empty)
+            ///          // Continue Query with Add Range Variable : No Vowel Name
+            ///          where NoVowelName.Length > 2
+            ///          select NoVowelName;
+            /// 
+            /// Result = Names.Select(n => Regex.Replace(n, "[aeiouAEIOU]", string.Empty))
+            ///               .Where(NoVowelName => NoVowelName.Length > 2);
+            #endregion
 
-            Result.Print();
-            //Result.PrintAll();
+
+
+
+            //Result.Print();
+            Result.PrintAll();
         }
     }
 }
