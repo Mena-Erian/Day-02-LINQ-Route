@@ -371,7 +371,8 @@ namespace Demo
             /// 
             /// Result = ProductsList.All(p => p.UnitsInStock > 0); // Return True, if Sequence at least Contains All Matching Element for the predicate.
             /// 
-            /// Result = ProductsList.Contains(new Product()
+            /// //Use the Generic to use the LINQ Operator, so it will be transfer to Remote SQL
+            /// Result = ProductsList.Contains<Product>(new Product()
             /// {
             ///     ProductId = 32,
             ///     ProductName = "Mascarpone Fabioli",
@@ -379,7 +380,7 @@ namespace Demo
             ///     UnitsInStock = 9
             /// }); // Return True if specifed element matching in list
             /// 
-            /// Result = ProductsList.Contains(new Product()
+            /// Result = ProductsList.Contains<Product>(new Product()
             /// {
             ///     ProductId = 32,
             ///     ProductName = "Mascarpone Fabioli",
