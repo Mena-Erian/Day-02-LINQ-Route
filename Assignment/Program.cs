@@ -100,7 +100,94 @@ namespace Assignment
             /// Result.PrintAll();
             #endregion
 
+            #region 10. Get the cheapest price among each category's products
+            /// var Result = ProductsList.GroupBy(p => p.Category, (key, products) => new
+            /// {
+            ///     Category = key,
+            ///     CheapestProduct = products.MinBy(p => p.UnitPrice)
+            /// });
+            /// 
+            /// Result = from p in ProductsList
+            ///          group p by p.Category
+            ///          into prdCtr
+            ///          select new
+            ///          {
+            ///              Category = prdCtr.Key,
+            ///              CheapestProduct = prdCtr.MinBy(p => p.UnitPrice)
+            ///          };
+            /// 
+            /// Result.PrintAll();
+            #endregion
 
+            #region 11. Get the products with the cheapest price in each category (Use Let)
+            /// var Result = from p in ProductsList
+            ///              let prdCtr = p.Category
+            ///              group p by p.Category into prdCtr
+            ///              select new
+            ///              {
+            ///                  Category = prdCtr.Key,
+            ///                  CheapestProduct = prdCtr.MinBy(p => p.UnitPrice)
+            ///              };
+            /// 
+            /// Result.PrintAll();
+            #endregion
+
+            #region 12. Get the most expensive price among each category's products.
+            /// var Result = ProductsList.GroupBy(p => p.Category, (key, products) => new
+            /// {
+            ///     Category = key,
+            ///     MostExpensivePrice = products.Max(p => p.UnitPrice)
+            /// });
+            /// 
+            /// Result = from p in ProductsList
+            ///          group p by p.Category
+            ///          into prdCtr
+            ///          select new
+            ///          {
+            ///              Category = prdCtr.Key,
+            ///              MostExpensivePrice = prdCtr.Max(p => p.UnitPrice)
+            ///          };
+            /// 
+            /// Result.PrintAll();
+            #endregion
+
+            #region 13. Get the products with the most expensive price in each category.
+            /// var Result = ProductsList.GroupBy(p => p.Category, (key, products) => new
+            /// {
+            ///     Category = key,
+            ///     MostExpensiveProduct = products.MaxBy(p => p.UnitPrice)
+            /// });
+            /// 
+            /// Result = from p in ProductsList
+            ///          group p by p.Category
+            ///          into prdCtr
+            ///          select new
+            ///          {
+            ///              Category = prdCtr.Key,
+            ///              MostExpensiveProduct = prdCtr.MaxBy(p => p.UnitPrice)
+            ///          };
+            /// 
+            /// Result.PrintAll();
+            #endregion
+
+            #region 14. Get the average price of each category's products.
+            /// var Result = ProductsList.GroupBy(p => p.Category, (key, products) => new
+            /// {
+            ///     Category = key,
+            ///     PriceAvg = products.Average(p => p.UnitPrice)
+            /// });
+            /// 
+            /// Result = from p in ProductsList
+            ///          group p by p.Category
+            ///          into prdCtr
+            ///          select new
+            ///          {
+            ///              Category = prdCtr.Key,
+            ///              PriceAvg = prdCtr.Average(p => p.UnitPrice)
+            ///          };
+            /// 
+            /// Result.PrintAll();
+            #endregion
 
             #endregion
 
