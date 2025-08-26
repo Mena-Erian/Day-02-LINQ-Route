@@ -358,6 +358,34 @@ namespace Assignment
 
             #endregion
 
+            #region LINQ – Transformation Operators 
+
+            #region 1. Return a sequence of just the names of a list of products.
+            //ProductsList.Select(p => p.ProductName).ToList().PrintAll();
+            #endregion
+
+            #region 2. Produce a sequence of the uppercase and lowercase versions of each word in the original array (Anonymous Types).
+            /// string[] words = { "aPPLE", "BlUeBeRrY", "cHeRry" };
+            /// var Result = words.Select(str => new { UpperCase = str.ToUpper(), LowerCase = str.ToLower() });
+            /// 
+            /// Result.PrintAll();
+            #endregion
+
+            #region 3. Produce a sequence containing some properties of Products, including UnitPrice which is renamed to Price in the resulting type.
+            /// var Result = ProductsList.Select(p => new { p.ProductName, p.Category, Price = p.UnitPrice });
+            /// Result.PrintAll();
+            #endregion
+
+            #region 4. Determine if the value of int in an array match their position in the array.
+            /// int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            /// var Result = Arr.Select((number, index) => new { number, value = number == index })
+            ///                 .ToDictionary(rslt => $"{rslt.number}: {rslt.value}");
+            /// 
+            /// Console.WriteLine("Numbers In-place?");
+            /// foreach (var item in Result) Console.WriteLine(item.Key);
+            #endregion
+
+            #endregion
         }
     }
 }
