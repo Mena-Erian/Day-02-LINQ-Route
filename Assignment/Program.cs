@@ -191,6 +191,51 @@ namespace Assignment
 
             #endregion
 
+            #region LINQ - Set Operators
+
+            #region 1. Find the unique Category names from Product List
+            /// var Result = ProductsList.Select(p => p.Category).Distinct();
+            /// 
+            /// Result = (from p in ProductsList
+            ///           select p.Category).Distinct();
+            /// 
+            /// Result.PrintAll();
+            #endregion
+
+            #region 2. Produce a Sequence containing the unique first letter from both product and customer names.
+            /// var seq01 = ProductsList.Select(p => p.ProductName[0]);
+            /// var seq02 = CustomersList.Select(c => c.CustomerName[0]);
+            /// var Result = seq01.Union(seq02).Order();
+            /// 
+            /// Result.PrintAll(); 
+            #endregion
+
+            #region 3. Create one sequence that contains the common first letter from both product and customer names.
+            /// var seq01 = ProductsList.Select(p => p.ProductName[0]);
+            /// var seq02 = CustomersList.Select(c => c.CustomerName[0]);
+            /// var Result = seq01.Concat(seq02).Order();
+            /// 
+            /// Result.PrintAll();  
+            #endregion
+
+            #region 4. Create one sequence that contains the first letters of product names that are not also first letters of customer names.
+            /// var seq01 = ProductsList.Select(p => p.ProductName[0]);
+            /// var seq02 = CustomersList.Select(c => c.CustomerName[0]);
+            /// var Result = seq01.Except(seq02).Order();
+            /// 
+            /// Result.PrintAll(); 
+            #endregion
+
+            #region 5. Create one sequence that contains the last Three Characters in each name of all customers and products, including any duplicates
+            /// var seq01 = ProductsList.Select(p => p.ProductName.Substring(p.ProductName.Length <= 3 ? 0 : p.ProductName.Length - 3, 3));
+            /// var seq02 = CustomersList.Select(c => c.CustomerName.Substring(c.CustomerName.Length <= 3 ? 0 : c.CustomerName.Length - 3, 3));
+            /// var Result = seq01.Concat(seq02);
+            /// 
+            /// Result.PrintAll();
+            #endregion
+
+            #endregion
+
         }
     }
 }
