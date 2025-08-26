@@ -331,16 +331,16 @@ namespace Demo
             //var Result = ProductsList.GroupBy(p => p.Category, p => new { p.ProductId, p.ProductName });
             //Result = ProductsList.GroupBy(p => p.Category, p => new { p.ProductId, p.ProductName }, new StringEqualityComparer());
 
-            //var Result = ProductsList.GroupBy(p => p.Category, (key, products) => new
-            //{
-            //Category = key,
-            //Count = products.Count()
-            //});
-            //Result = ProductsList.GroupBy(p => p.Category, (key, products) => new
-            //{
-            //Category = key,
-            //Count = products.Count()
-            //}, new StringEqualityComparer());
+            var Result = ProductsList.GroupBy(p => p.Category, (key, products) => new
+            {
+                Category = key,
+                Count = products.Count()
+            });
+            Result = ProductsList.GroupBy(p => p.Category, (key, products) => new
+            {
+                Category = key,
+                Count = products.Count()
+            }, new StringEqualityComparer());
 
             // var Result = ProductsList.GroupBy(p => p.Category, p => new { p.ProductId, p.ProductName }, (key, products) => new
             // {
@@ -445,12 +445,12 @@ namespace Demo
             /// 
             /// var Result = ProductsList.Skip(pageSize * (pageIndex - 1)).Take(pageSize);
             #endregion
-            
+
             #endregion
 
 
             //Result.Print();
-            Result.PrintAll();
+            //Result.PrintAll();
         }
     }
 }
