@@ -1,24 +1,37 @@
 ﻿using Demo;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Intrinsics.X86;
+using System.Xml.Linq;
 using static Demo.ListGenerator;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Assignment
 {
     internal class Program
     {
-        /// class ProductEqulityComparerByUnitsInStock : IEqualityComparer<Product>
-        /// {
-        ///     public bool Equals(Product? x, Product? y)
-        ///     {
-        ///         x.
-        ///     }
-        /// 
-        ///     public int GetHashCode([DisallowNull] Product obj)
-        ///     {
-        ///         throw new NotImplementedException();
-        ///     }
-        /// }
+
+        class StringEqualityComparer : IEqualityComparer<string>
+        {
+            // NOTE!:
+            // To be honest, this Class made with the help of chatgpt :\
+            public bool Equals(string? x, string? y)
+            {
+                if (x == null) return y == null;
+                if (y == null) return false;
+
+                return x.OrderBy(c => c).SequenceEqual(y.OrderBy(c => c));
+            }
+
+            public int GetHashCode([DisallowNull] string obj)
+            {
+
+                int hash = 0;
+                foreach (char item in obj) hash += item;
+                return hash;
+            }
+        }
         static void Main()
         {
             #region LINQ - Element Operators
@@ -271,6 +284,38 @@ namespace Assignment
             #endregion
 
             #endregion
+
+            #region LINQ – Grouping Operators
+
+            #region 1. Use group by to partition a list of numbers by their remainder when divided by 5
+            /// List<int> numbers = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+            /// List<int> remainders = new List<int> { 0, 1, 2, 3, 4 };
+            /// 
+            /// var Result = numbers
+            ///             .GroupBy((num) => num % 5);
+            /// 
+            /// 
+            /// foreach (IGrouping<int, int> item in Result)
+            /// {
+            ///     Console.WriteLine($"Numbers with a remainder of {item.Key} when divided by 5: ");
+            ///     item.PrintAll();
+            /// }
+            #endregion
+
+            #region 2. Uses group by to partition a list of words by their first letter.
+            /// var Result = DictionaryEnglish.Line.GroupBy(line => line[0]);
+            /// Result.PrintAll();
+            #endregion
+
+            #region 3. Consider this Array as an Inpution Use Group By with a custom comparer that matches words that are consists of the same Characters Together
+            /// string[] Arr = { "from", "salt", "earn", " last", "near", "form" };
+            /// var Result = Arr.GroupBy(word => word, new StringEqualityComparer());
+            /// 
+            /// Result.PrintAll();
+            #endregion
+         
+            #endregion
+
         }
     }
 }
