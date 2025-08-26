@@ -1,6 +1,7 @@
 ﻿using Demo;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.Intrinsics.X86;
 using System.Xml.Linq;
 using static Demo.ListGenerator;
@@ -262,6 +263,47 @@ namespace Assignment
 
             #endregion
 
+            #region LINQ - Partitioning Operators
+
+            #region 1. Get the first 3 orders from customers in Washington
+            /// var Result = CustomersList.Where(ctr => ctr.City == "London") // "Washington" not Customer within File in Washington
+            ///                            .SelectMany(ctr => ctr.Orders)
+            ///                            .Take(3);
+            /// Result.PrintAll();
+            #endregion
+
+            #region 2. Get all but the first 2 orders from customers in Washington.
+            /// var first2Order = CustomersList.Where(ctr => ctr.City == "London")
+            ///                                .Select(ctr => new { ctr.City, ctr.Orders })
+            ///                                .Take(2);
+            /// var allOrders = CustomersList.Select(ctr => new { ctr.City, ctr.Orders });
+            /// var Result = first2Order.Union(allOrders);
+            /// Result.PrintAll();
+            #endregion
+
+            #region 3. Return elements starting from the beginning of the array until a number is hit that is less than its position in the array.
+            /// int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            /// var Result = numbers.TakeWhile((num, index) => num >= index);
+            /// 
+            /// Result.PrintAll();
+            #endregion
+
+            #region 4.Get the elements of the array starting from the first element divisible by 3.
+            ///int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            ///var Result = numbers.SkipWhile(num => num % 3 != 0);
+            ///
+            ///Result.PrintAll();
+            #endregion
+
+            #region 5. Get the elements of the array starting from the first element less than its position.
+            /// int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            /// var Result = numbers.SkipWhile((num, index) => num >= index);
+            /// 
+            /// Result.PrintAll();
+            #endregion
+
+            #endregion
+
             #region LINQ - Quantifiers
 
             #region 1. Determine if any of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First) contain the substring 'ei'.
@@ -313,7 +355,7 @@ namespace Assignment
             /// 
             /// Result.PrintAll();
             #endregion
-         
+
             #endregion
 
         }
