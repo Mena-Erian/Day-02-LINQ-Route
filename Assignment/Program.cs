@@ -1,4 +1,5 @@
 ﻿using Demo;
+using System.Diagnostics.CodeAnalysis;
 using static Demo.ListGenerator;
 
 
@@ -6,6 +7,18 @@ namespace Assignment
 {
     internal class Program
     {
+        /// class ProductEqulityComparerByUnitsInStock : IEqualityComparer<Product>
+        /// {
+        ///     public bool Equals(Product? x, Product? y)
+        ///     {
+        ///         x.
+        ///     }
+        /// 
+        ///     public int GetHashCode([DisallowNull] Product obj)
+        ///     {
+        ///         throw new NotImplementedException();
+        ///     }
+        /// }
         static void Main()
         {
             #region LINQ - Element Operators
@@ -236,6 +249,28 @@ namespace Assignment
 
             #endregion
 
+            #region LINQ - Quantifiers
+
+            #region 1. Determine if any of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First) contain the substring 'ei'.
+            /// var Result = DictionaryEnglish.Line.Any(str => str.Contains("ei"));
+            /// Result.Print();
+            #endregion
+
+            #region 2. Return a grouped a list of products only for categories that have at least one product that is out of stock.
+            /// var Result = ProductsList.GroupBy(p => p.Category)
+            ///                          .Where((prdCtr) => prdCtr.Any(p => p.UnitsInStock == 0));
+            /// 
+            /// Result.PrintAll();
+            #endregion
+
+            #region 3. Return a grouped a list of products only for categories that have all of their products in stock.
+            /// var Result = ProductsList.GroupBy(p => p.Category)
+            ///                          .Where((prdCtr) => prdCtr.All(p => p.UnitsInStock > 0));
+            /// 
+            /// Result.PrintAll();
+            #endregion
+
+            #endregion
         }
     }
 }
